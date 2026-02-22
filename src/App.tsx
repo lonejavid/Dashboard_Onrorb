@@ -84,7 +84,7 @@ function App() {
               User growth & distribution
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-              <SignupsChart data={data.signupsOverTime} />
+              <SignupsChart data={data.signupsOverTime} summary={data.summary} />
               <PlanDonut data={data.planDistribution} total={data.summary.totalUsers} />
             </div>
           </section>

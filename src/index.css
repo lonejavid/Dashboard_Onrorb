@@ -1,7 +1,7 @@
 :root {
   --bg-primary: #0c0a14;
-  --bg-card: #15121c;
-  --bg-card-hover: #1c1824;
+  --bg-card: #1e293b;
+  --bg-card-hover: #1e293b;
   --border: #2a2638;
   --text-primary: #f5f4f8;
   --text-secondary: #9890ab;
@@ -40,3 +40,4 @@ input, select, button {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+
