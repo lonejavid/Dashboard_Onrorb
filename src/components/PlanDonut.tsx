@@ -48,8 +48,8 @@ export function PlanDonut({
             <Tooltip
               contentStyle={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, color: '#fff' }}
               labelStyle={{ color: '#fff' }}
-              formatter={(value: number, name: string, props: { payload: { percent?: number } }) =>
-                [`${value} (${props.payload.percent ?? 0}%)`, name]
+              formatter={(value: number, name: string, item: { payload?: { percent?: number } }) =>
+                [`${value} (${item?.payload?.percent ?? 0}%)`, name]
               }
             />
             <Legend
