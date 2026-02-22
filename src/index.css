@@ -1,0 +1,42 @@
+:root {
+  --bg-primary: #0c0a14;
+  --bg-card: #15121c;
+  --bg-card-hover: #1c1824;
+  --border: #2a2638;
+  --text-primary: #f5f4f8;
+  --text-secondary: #9890ab;
+  --text-muted: #6b6380;
+  --accent-blue: #6366f1;
+  --accent-purple: #8b5cf6;
+  --accent-green: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-cyan: #06b6d4;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.2);
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+input, select, button {
+  font-family: inherit;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
