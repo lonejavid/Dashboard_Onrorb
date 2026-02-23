@@ -38,7 +38,7 @@ export function Header({
         <div>
           <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Shield Analytics</h1>
           <p style={{ margin: '0.2rem 0 0', color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
-            User & platform intelligence · investor dashboard
+            User & platform intelligence
           </p>
         </div>
         <span
