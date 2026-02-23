@@ -13,7 +13,7 @@ export function Footer() {
       }}
     >
       <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-        Confidential · For investor use only · Data is read-only from live platform
+        Confidential · Data is read-only from live platform
       </span>
       <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Shield Analytics Dashboard</span>
     </footer>
