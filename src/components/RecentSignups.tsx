@@ -14,15 +14,26 @@ function formatDate(iso: string): string {
   }
 }
 
-export function RecentSignups({ data }: { data: { id: string; name: string; date: string; plan: string }[] }) {
+export function RecentSignups({
+  data,
+  limit = 8,
+  title = 'RECENT SIGNUPS',
+  subtitle = 'Latest registered users.',
+}: {
+  data: { id: string; name: string; date: string; plan: string }[];
+  limit?: number;
+  title?: string;
+  subtitle?: string;
+}) {
+  const list = data.slice(0, limit);
   return (
     <div style={cardStyle}>
       <h3 style={{ margin: '0 0 0.35rem', fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
-        RECENT SIGNUPS
+        {title}
       </h3>
-      <p style={{ margin: '0 0 1rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Latest registered users.</p>
+      <p style={{ margin: '0 0 1rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{subtitle}</p>
       <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-        {data.slice(0, 8).map((u) => (
+        {list.map((u) => (
           <li
             key={u.id}
             style={{

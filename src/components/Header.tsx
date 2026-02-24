@@ -1,3 +1,5 @@
+import { format, parseISO, isValid } from 'date-fns';
+import DatePicker from 'react-datepicker';
 import type { DashboardFilters } from '../types';
 
 const cardStyle: React.CSSProperties = {
@@ -7,6 +9,12 @@ const cardStyle: React.CSSProperties = {
   border: '1px solid var(--border)',
   boxShadow: 'var(--shadow-card)',
 };
+
+function toDateOrNull(value: string): Date | null {
+  if (!value) return null;
+  const d = parseISO(value);
+  return isValid(d) ? d : null;
+}
 
 export function Header({
   filters,
@@ -32,6 +40,9 @@ export function Header({
       })
     : '—';
 
+  const fromDate = toDateOrNull(filters.from);
+  const toDate = toDateOrNull(filters.to);
+
   return (
     <header style={{ ...cardStyle, marginBottom: '1.5rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', justifyContent: 'space-between' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -56,34 +67,34 @@ export function Header({
         </span>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem' }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>From</span>
-          <input
-            type="date"
-            value={filters.from}
-            onChange={(e) => set('from', e.target.value)}
-            style={{
-              background: 'var(--bg-primary)',
-              border: '1px solid var(--border)',
-              borderRadius: 8,
-              padding: '6px 10px',
-              color: 'inherit',
-            }}
+          <DatePicker
+            id="filter-date-from"
+            selected={fromDate}
+            onChange={(d) => set('from', d ? format(d, 'yyyy-MM-dd') : '')}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="dd/mm/yyyy"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            isClearable
+            className="dashboard-date-picker"
           />
         </label>
-        <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>To</span>
-          <input
-            type="date"
-            value={filters.to}
-            onChange={(e) => set('to', e.target.value)}
-            style={{
-              background: 'var(--bg-primary)',
-              border: '1px solid var(--border)',
-              borderRadius: 8,
-              padding: '6px 10px',
-              color: 'inherit',
-            }}
+          <DatePicker
+            id="filter-date-to"
+            selected={toDate}
+            onChange={(d) => set('to', d ? format(d, 'yyyy-MM-dd') : '')}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="dd/mm/yyyy"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+            isClearable
+            className="dashboard-date-picker"
           />
         </label>
         <select

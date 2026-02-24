@@ -1,6 +1,8 @@
 export { ExecutiveSummary } from './ExecutiveSummary';
 export { Header } from './Header';
 export { MetricCards } from './MetricCards';
+export { MetricDetailPanel } from './MetricDetailPanel';
+export type { MetricKey } from './MetricDetailPanel';
 export { SectionTitle } from './SectionTitle';
 export { SignupsChart } from './SignupsChart';
 export { PlanDonut } from './PlanDonut';

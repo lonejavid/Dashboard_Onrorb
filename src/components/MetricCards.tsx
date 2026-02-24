@@ -3,8 +3,8 @@ const year = new Date().getFullYear();
 
 const baseCardStyle: React.CSSProperties = {
   background: 'var(--bg-card)',
-  borderRadius: 12,
-  padding: '1.35rem 1.25rem',
+  borderRadius: 14,
+  padding: '2rem 1.75rem',
   border: '1px solid var(--border)',
   boxShadow: 'var(--shadow-card)',
   overflow: 'hidden',
@@ -19,13 +19,15 @@ function TopBar({ color }: { color: string }) {
         top: 0,
         left: 0,
         right: 0,
-        height: 4,
+        height: 5,
         background: color,
-        borderRadius: '12px 12px 0 0',
+        borderRadius: '14px 14px 0 0',
       }}
     />
   );
 }
+
+export type MetricKey = 'totalUsers' | 'proUsers' | 'freeUsers' | 'activeUsers' | 'signups';
 
 const ICONS = {
   totalUsers: (
@@ -61,6 +63,8 @@ const ICONS = {
 
 export function MetricCards({
   summary,
+  selectedMetric = null,
+  onSelectMetric,
 }: {
   summary: {
     totalUsers: number;
@@ -73,6 +77,8 @@ export function MetricCards({
     freePercent: number;
     activeRatePercent: number;
   };
+  selectedMetric?: MetricKey | null;
+  onSelectMetric?: (key: MetricKey) => void;
 }) {
   const growth = summary.signupGrowthPercent ?? 0;
   const growthText = growth > 0 ? `+${growth}% vs last month` : growth < 0 ? `${growth}% vs last month` : 'No prior month data';
@@ -140,32 +146,49 @@ export function MetricCards({
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem' }}>
-      {cards.map((c) => (
-        <div key={c.title} className="dashboard-card" style={baseCardStyle}>
-          <TopBar color={c.topBarColor} />
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.5rem', marginTop: 6 }}>
-            <span style={{ color: c.iconColor, flexShrink: 0, opacity: 0.95 }} title={c.title}>
-              {ICONS[c.key]}
-            </span>
-            {c.trend != null && (
-              <span
-                style={{
-                  fontSize: '0.7rem',
-                  fontWeight: 600,
-                  color: c.trendUp ? 'var(--accent-green)' : 'var(--text-muted)',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {c.trend}
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.35rem' }}>
+      {cards.map((c) => {
+        const isSelected = selectedMetric === c.key;
+        const Wrapper = onSelectMetric ? 'button' : 'div';
+        const wrapperProps = onSelectMetric
+          ? {
+              type: 'button' as const,
+              onClick: () => onSelectMetric(c.key),
+              style: {
+                ...baseCardStyle,
+                cursor: 'pointer',
+                textAlign: 'left' as const,
+                border: isSelected ? '2px solid var(--accent-blue)' : baseCardStyle.border,
+                boxShadow: isSelected ? '0 0 0 1px var(--accent-blue)' : baseCardStyle.boxShadow,
+              },
+            }
+          : { style: baseCardStyle };
+        return (
+          <Wrapper key={c.title} className="dashboard-card" {...wrapperProps}>
+            <TopBar color={c.topBarColor} />
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.5rem', marginTop: 8 }}>
+              <span style={{ color: c.iconColor, flexShrink: 0, opacity: 0.95 }} title={c.title}>
+                {ICONS[c.key]}
               </span>
-            )}
-          </div>
-          <span style={{ display: 'block', fontSize: '1.85rem', fontWeight: 700, letterSpacing: '-0.02em', marginTop: 4 }}>{c.value}</span>
-          <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginTop: 6, fontWeight: 500 }}>{c.title}</div>
-          <div style={{ fontSize: '0.75rem', marginTop: 4, color: 'var(--text-muted)' }}>{c.sub}</div>
-        </div>
-      ))}
+              {c.trend != null && (
+                <span
+                  style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    color: c.trendUp ? 'var(--accent-green)' : 'var(--text-muted)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {c.trend}
+                </span>
+              )}
+            </div>
+            <span style={{ display: 'block', fontSize: '2.5rem', fontWeight: 700, letterSpacing: '-0.02em', marginTop: 8, color: '#ffffff' }}>{c.value}</span>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: 8, fontWeight: 500 }}>{c.title}</div>
+            <div style={{ fontSize: '0.8125rem', marginTop: 6, color: 'var(--text-muted)' }}>{c.sub}</div>
+          </Wrapper>
+        );
+      })}
     </div>
   );
 }

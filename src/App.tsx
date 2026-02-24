@@ -6,6 +6,7 @@ import {
   Footer,
   Header,
   MetricCards,
+  MetricDetailPanel,
   SignupsChart,
   PlanDonut,
   ProviderBar,
@@ -15,6 +16,7 @@ import {
   ReferralCredits,
   PlatformStats,
 } from './components';
+import type { MetricKey } from './components';
 
 const defaultFilters: DashboardFilters = {
   from: '',
@@ -31,6 +33,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<DashboardFilters>(defaultFilters);
   const [appliedFilters, setAppliedFilters] = useState<Partial<DashboardFilters>>({});
+  const [selectedMetric, setSelectedMetric] = useState<MetricKey | null>(null);
 
   const load = useCallback(async (isInitial = false) => {
     if (isInitial) setLoading(true);
@@ -77,7 +80,21 @@ function App() {
             <h2 style={{ margin: '0 0 1rem', fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
               Key metrics
             </h2>
-            <MetricCards summary={data.summary} />
+            <p style={{ margin: '0 0 1rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+              Click any card to see detailed data below.
+            </p>
+            <MetricCards
+              summary={data.summary}
+              selectedMetric={selectedMetric}
+              onSelectMetric={(key) => setSelectedMetric((prev) => (prev === key ? null : key))}
+            />
+            {selectedMetric && (
+              <MetricDetailPanel
+                metric={selectedMetric}
+                data={data}
+                onClose={() => setSelectedMetric(null)}
+              />
+            )}
           </section>
           <section style={{ marginTop: '2rem' }}>
             <h2 style={{ margin: '0 0 1rem', fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
