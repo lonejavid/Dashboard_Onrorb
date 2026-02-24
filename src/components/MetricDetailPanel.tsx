@@ -39,11 +39,14 @@ function formatDate(iso: string): string {
   }
 }
 
+/* Dashboard theme accents for modal (green/orange) */
+const ACCENT = { green: '#4caf78', greenBg: 'rgba(45,122,79,0.2)', orange: '#ff7a24', orangeBg: 'rgba(232,97,10,0.2)' } as const;
+
 const AVATAR_COLORS: Record<string, { bg: string; color: string }> = {
-  pro: { bg: 'rgba(99,102,241,0.2)', color: '#818cf8' },
-  free: { bg: 'rgba(37,99,235,0.15)', color: '#60a5fa' },
-  green: { bg: 'rgba(16,185,129,0.15)', color: '#34d399' },
-  amber: { bg: 'rgba(245,158,11,0.15)', color: '#fbbf24' },
+  pro: { bg: ACCENT.orangeBg, color: ACCENT.orange },
+  free: { bg: ACCENT.greenBg, color: ACCENT.green },
+  green: { bg: ACCENT.greenBg, color: ACCENT.green },
+  amber: { bg: ACCENT.orangeBg, color: ACCENT.orange },
 };
 
 function getAvatarStyle(plan: string): React.CSSProperties {
@@ -262,10 +265,10 @@ export function MetricDetailPanel({
                 <div className="donut-wrap">
                   <PlanDonut data={data.planDistribution} total={s.totalUsers} noCard />
                   <div className="donut-legend">
-                    {data.planDistribution.map((d, i) => (
+                    {data.planDistribution.map((d) => (
                       <div key={d.plan} className="legend-row">
                         <div className="legend-left">
-                          <div className="legend-dot" style={{ background: ['#2563eb', '#7c3aed'][i % 2] }} />
+                          <div className="legend-dot" style={{ background: d.plan === 'pro' ? '#e8610a' : '#2d7a4f' }} />
                           {d.plan.charAt(0).toUpperCase() + d.plan.slice(1)}
                         </div>
                         <div className="legend-val">{d.percent}% · {d.count}</div>
