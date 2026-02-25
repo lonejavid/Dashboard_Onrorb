@@ -18,7 +18,7 @@ export function SubscriptionStatus({
             border: '1px solid var(--border-lt)',
           }}
         >
-          <div style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>{d.count}</div>
+          <div style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)', fontFamily: 'sans-serif' }}>{d.count}</div>
           <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textTransform: 'capitalize' }}>{d.status}</div>
         </div>
       ))}

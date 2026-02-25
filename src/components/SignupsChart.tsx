@@ -63,7 +63,7 @@ export function SignupsChart({ data, summary }: SignupsChartProps) {
       </div>
       <div className="cs">Monthly signup volume for trend analysis.</div>
       <div style={{ marginBottom: 16 }}>
-        <span style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>
+        <span style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text)', fontFamily: 'sans-serif' }}>
           {current.toLocaleString()}
         </span>
         {growthLabel != null && (

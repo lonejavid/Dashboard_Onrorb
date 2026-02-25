@@ -14,28 +14,28 @@ export function PlatformStats({ data }: { data: PlatformStatsData }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '10px 0', borderTop: '1px solid var(--border-lt)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12.5, color: 'var(--text-muted)' }}>
           <span>Total scans (all time)</span>
-          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>{data.totalScans.toLocaleString()}</span>
+          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'sans-serif' }}>{data.totalScans.toLocaleString()}</span>
         </div>
         {data.scansLast30Days != null && (
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12.5, color: 'var(--text-muted)' }}>
             <span>Scans (last 30 days)</span>
-            <span style={{ fontWeight: 700, color: 'var(--green)', fontFamily: 'Syne, sans-serif' }}>{data.scansLast30Days.toLocaleString()}</span>
+            <span style={{ fontWeight: 700, color: 'var(--green)', fontFamily: 'sans-serif' }}>{data.scansLast30Days.toLocaleString()}</span>
           </div>
         )}
         {data.avgScansPerUser != null && (
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12.5, color: 'var(--text-muted)' }}>
             <span>Avg scans per user</span>
-            <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>{data.avgScansPerUser}</span>
+            <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'sans-serif' }}>{data.avgScansPerUser}</span>
           </div>
         )}
         <div style={{ height: 1, background: 'var(--border-lt)', margin: '4px 0' }} />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12.5, color: 'var(--text-muted)' }}>
           <span>Spam domains blocked</span>
-          <span style={{ fontWeight: 700, color: 'var(--orange)', fontFamily: 'Syne, sans-serif' }}>{data.spamDomainsBlocked.toLocaleString()}</span>
+          <span style={{ fontWeight: 700, color: 'var(--orange)', fontFamily: 'sans-serif' }}>{data.spamDomainsBlocked.toLocaleString()}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12.5, color: 'var(--text-muted)' }}>
           <span>Trusted domains</span>
-          <span style={{ fontWeight: 700, color: 'var(--green)', fontFamily: 'Syne, sans-serif' }}>{data.trustedDomains.toLocaleString()}</span>
+          <span style={{ fontWeight: 700, color: 'var(--green)', fontFamily: 'sans-serif' }}>{data.trustedDomains.toLocaleString()}</span>
         </div>
       </div>
     </div>

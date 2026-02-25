@@ -10,15 +10,15 @@ export function ReferralCredits({
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '10px 0', borderBottom: '1px solid var(--border-lt)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: 'var(--text-muted)' }}>
           <span>Users with Referral Code</span>
-          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>{data.usersWithReferralCode}</span>
+          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'sans-serif' }}>{data.usersWithReferralCode}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: 'var(--text-muted)' }}>
           <span>Referral Rewards Granted</span>
-          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>{data.referralRewardsGranted}</span>
+          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'sans-serif' }}>{data.referralRewardsGranted}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, color: 'var(--text-muted)' }}>
           <span>Avg Credits per User</span>
-          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'Syne, sans-serif' }}>{data.avgCreditsPerUser}</span>
+          <span style={{ fontWeight: 700, color: 'var(--text)', fontFamily: 'sans-serif' }}>{data.avgCreditsPerUser}</span>
         </div>
       </div>
     </div>
