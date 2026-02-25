@@ -28,12 +28,25 @@ export function Header({
   return (
     <header className="dashboard-hdr">
       <div className="dashboard-hdr-l">
-        <div>
-          <div className="dashboard-logo">
-            Shield Analytics <span className="dashboard-logo-badge">Confidential</span>
-          </div>
-          <div className="dashboard-hdr-sub">User &amp; platform intelligence</div>
-        </div>
+       <div>
+  <div className="dashboard-logo">
+    <img
+      src="/logo.png"
+      alt="Shield Analytics"
+      className="dashboard-logo-img"
+    />
+
+    <div className="dashboard-logo-text-wrap">
+      <span className="dashboard-logo-text">
+        Shield Analytics
+      </span>
+
+      <div className="dashboard-hdr-sub">
+        User &amp; platform intelligence
+      </div>
+    </div>
+  </div>
+</div>
         <div className={`dashboard-live ${loading ? 'dashboard-live-loading' : ''}`}>
           <div className="dashboard-live-dot" style={{ opacity: loading ? 0.5 : 1 }} />
           LIVE &nbsp;·&nbsp; Last synced: {lastSyncStr}
